@@ -1,5 +1,5 @@
 from random import randint, choice
-from data import teams, pitchers, uppercase, pitching_stats
+from data import teams, pitchers, uppercase, pitching_stats, bad_values
 import statsapi
 import csv
 
@@ -68,24 +68,16 @@ def get_rand_stat(player):
         if pos == 'P' and p['group'] == 'pitching':
             while boring:
                 stat, value = choice(list(p['stats'].items()))
-                if value != 0 and stat not in pitching_stats:
-                    print(f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season.')
+                if value not in bad_values and stat not in pitching_stats:
                     boring = False
-                elif value != 0 and stat in pitching_stats:
-                    print(f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} against this season.')
+                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season.')
+                elif value not in bad_values and stat in pitching_stats:
                     boring = False
+                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} against this season.')
         
         elif p['group'] == 'hitting':
             while boring:
                 stat, value = choice(list(p['stats'].items()))
-                if value != 0:
-                    print(f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season.')
+                if value not in bad_values:
                     boring = False
-
-
-# print(get_rand_player())        
-
-
-get_rand_stat(get_rand_player())
-
-
+                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season.')
