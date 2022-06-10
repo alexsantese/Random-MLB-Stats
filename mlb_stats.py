@@ -4,7 +4,7 @@ import statsapi
 import csv
 
 players = []
-with open('razzball.csv', 'r', encoding='utf8') as file:
+with open('Intermediate Projects\MLB Stats\players.csv', 'r', encoding='utf8') as file:
     csvreader = csv.reader(file)
     header = next(csvreader)
     for row in csvreader:
@@ -19,6 +19,10 @@ def get_rand_player():
         if player['current_team'] in teams:
             milb = False
     return player
+
+def rand_img():
+    img = f'assets\{randint(1, 17)}.jpg'
+    return img
             
         
 def get_rand_stat(player):
@@ -43,6 +47,8 @@ def get_rand_stat(player):
         position = 'right fielder'
     elif pos == 'CF':
         position = 'center fielder'
+    elif pos == 'DH':
+        position = 'designated hitter'
     
     first = player['first_name']
     last = player['last_name']
@@ -70,14 +76,14 @@ def get_rand_stat(player):
                 stat, value = choice(list(p['stats'].items()))
                 if value not in bad_values and stat not in pitching_stats:
                     boring = False
-                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season.')
+                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season. ⚾')
                 elif value not in bad_values and stat in pitching_stats:
                     boring = False
-                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} against this season.')
+                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} against this season. ⚾')
         
         elif p['group'] == 'hitting':
             while boring:
                 stat, value = choice(list(p['stats'].items()))
                 if value not in bad_values:
                     boring = False
-                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season.')
+                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season. ⚾')
