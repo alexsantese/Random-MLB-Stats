@@ -1,7 +1,14 @@
-from random import randint, choice
-from data import teams, pitchers, uppercase, pitching_stats, bad_values
 import statsapi
 import csv
+import tweepy
+from data import teams, uppercase, pitching_stats, bad_values, positions, pitching_positions
+from random import randint, choice
+from twitter_credentials import *
+
+authenticator = tweepy.OAuthHandler(twitter_api_key, twitter_api_key_secret)
+authenticator.set_access_token(access_token, access_token_secret)
+
+api = tweepy.API(authenticator, wait_on_rate_limit=True)
 
 players = []
 with open('Intermediate Projects\MLB Stats\players.csv', 'r', encoding='utf8') as file:
@@ -16,7 +23,7 @@ def get_rand_player():
     
     while milb:
         player = statsapi.player_stat_data(players[randint(0, len(players))][2])
-        if player['current_team'] in teams:
+        if player['current_team'] in teams and player['active'] != False and player['stats'] != []:
             milb = False
     return player
 
@@ -27,32 +34,21 @@ def rand_img():
         
 def get_rand_stat(player):
     
-    pos = player['position']
-    
-    if pos == 'P':
-        position = 'pitcher'
-    elif pos == 'C':
-        position = 'catcher'
-    elif pos == '1B':
-        position = 'first baseman'
-    elif pos == '2B':
-        position = 'second baseman'
-    elif pos == '3B':
-        position = 'third baseman'
-    elif pos == 'SS':
-        position = 'shortstop'
-    elif pos == 'LF':
-        position = 'left fielder'
-    elif pos == 'RF':
-        position = 'right fielder'
-    elif pos == 'CF':
-        position = 'center fielder'
-    elif pos == 'DH':
-        position = 'designated hitter'
-    
     first = player['first_name']
     last = player['last_name']
-    team = player['current_team']
+    position = positions.get(player['position'])
+    current_team = player['current_team']
+    team = teams.get(player['current_team'])
+        
+    def get_twitter_handle():
+        search = f'{first} {last} {current_team}'
+        users = api.search_users(search)
+        if users != []:
+            for user in users:
+                return f'@{user.screen_name}'
+        else:
+            return f'{first} {last}'
+    
     
     boring = True
     
@@ -71,19 +67,19 @@ def get_rand_stat(player):
         
         p = player['stats'][i]
         
-        if pos == 'P' and p['group'] == 'pitching':
+        if player['position'] in pitching_positions and p['group'] == 'pitching':
             while boring:
                 stat, value = choice(list(p['stats'].items()))
                 if value not in bad_values and stat not in pitching_stats:
                     boring = False
-                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season. ⚾')
+                    return (f'{get_twitter_handle()} is a {position} for {team}. He has {value} {fix_formatting(stat)} this season. ⚾')
                 elif value not in bad_values and stat in pitching_stats:
                     boring = False
-                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} against this season. ⚾')
+                    return (f'{get_twitter_handle()} is a {position} for {team}. He has {value} {fix_formatting(stat)} against this season. ⚾')
         
         elif p['group'] == 'hitting':
             while boring:
                 stat, value = choice(list(p['stats'].items()))
                 if value not in bad_values:
                     boring = False
-                    return (f'{first} {last} is a {position} for the {team}. He has {value} {fix_formatting(stat)} this season. ⚾')
+                    return (f'{get_twitter_handle()} is a {position} for {team}. He has {value} {fix_formatting(stat)} this season. ⚾')
