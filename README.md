@@ -1,4 +1,4 @@
-# Random-MLB-Stats
+# Random MLB Stats Twitter Bot
 
 ## [@RandomMLBStats_](https://twitter.com/RandomMLBStats_)
 
