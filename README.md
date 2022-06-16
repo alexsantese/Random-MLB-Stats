@@ -11,4 +11,8 @@ for a random stat from a nested 'stats' dictionary.
 To keep the function from randomly returning stats that have a 0, or no value, the program checks if the stat is "boring" and 
 chooses a different stat if it is. 
 
+Added a dictionary of the teams and Twitter handles/hashtags to be able to add those to the tweets as well. 
 
+### Example Tweet:
+---
+![image](https://user-images.githubusercontent.com/81919149/174015545-69d90bc9-0dba-4ef8-8346-0dc4ce6389ee.png)
