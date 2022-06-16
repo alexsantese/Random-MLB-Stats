@@ -1,4 +1,0 @@
-twitter_api_key = 'oTBhYcu9o6lCwKBq5yRk9xd2I'
-twitter_api_key_secret = 'nIcA6jmuG38bUmAcGMe4hRX3XbLrNAr4Q3dBWAuyWEQJ7sDfRr'
-access_token = '1534912653683920897-tQHLWdj2QhtjrSgjctTPQwLmzQ0ZzD'
-access_token_secret = 'GRPjPg1HQDwOX6S1Ls3MtrC5qR8xsXAEWRe9rpxgVEcgg'
