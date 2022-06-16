@@ -97,11 +97,11 @@ def get_rand_stat(player):
                 if value not in boring_values and stat not in pitching_stats:
                     boring = False
                     # formats the returned stat into a string to be posted on twitter
-                    return (f'{first} {last}{twitter_handle} is a {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} this season. ⚾\n{hashtag} \n#MLB')
+                    return (f'{first} {last}{twitter_handle} is {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} this season. ⚾\n{hashtag} \n#MLB')
                 elif value not in boring_values and stat in pitching_stats:
                     boring = False
                     # this is specifically for pitching stats "against" the pitcher, ex: batting average against a given pitcher
-                    return (f'{first} {last}{twitter_handle} is a {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} against this season. ⚾\n{hashtag} \n#MLB')
+                    return (f'{first} {last}{twitter_handle} is {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} against this season. ⚾\n{hashtag} \n#MLB')
         
         # if the player is not a pitcher then we only care about their hitting stats, so we'll grab a hitting stat dictionary
         elif p['group'] == 'hitting':
@@ -110,5 +110,5 @@ def get_rand_stat(player):
                 if value not in boring_values:
                     boring = False
                     # TODO: need to exclude "number of pitches" from the possible stats for hitters as it's not a very relevant stat
-                    return (f'{first} {last}{twitter_handle} is a {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} this season. ⚾\n{hashtag} \n#MLB')
+                    return (f'{first} {last}{twitter_handle} is {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} this season. ⚾\n{hashtag} \n#MLB')
                  
