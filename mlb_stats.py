@@ -89,4 +89,3 @@ def get_rand_stat(player):
                     boring = False
                     return (f'{first} {last}{twitter_handle} is a {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} this season. ⚾\n{hashtag} \n#MLB')
                  
-print(get_rand_stat(get_rand_player()))
