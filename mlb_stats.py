@@ -1,3 +1,4 @@
+# 
 import statsapi
 import csv
 import tweepy
@@ -19,12 +20,12 @@ with open('Intermediate Projects\MLB Stats\players.csv', 'r', encoding='utf8') a
     
 def get_rand_player():
     
-    milb = True
+    invalid = True
     
-    while milb:
+    while invalid:
         player = statsapi.player_stat_data(players[randint(0, len(players))][2])
         if player['current_team'] in teams and player['active'] != False and player['stats'] != []:
-            milb = False
+            invalid = False
     return player
 
 def rand_img():
@@ -38,7 +39,8 @@ def get_rand_stat(player):
     last = player['last_name']
     position = positions.get(player['position'])
     current_team = player['current_team']
-    team = teams.get(player['current_team'])
+    team = teams.get(player['current_team'])[0]
+    hashtag = teams.get(player['current_team'])[1]
         
     def get_twitter_handle():
         search = f'{first} {last} {current_team}'
@@ -46,11 +48,7 @@ def get_rand_stat(player):
         if users != []:
             for user in users:
                 return f'@{user.screen_name}'
-        else:
-            return f'{first} {last}'
     
-    
-    boring = True
     
     def fix_formatting(string):
 
@@ -63,23 +61,32 @@ def get_rand_stat(player):
                 new += string[i]
         return new
     
+    boring = True
+    
     for i in range(len(player['stats'])):
         
         p = player['stats'][i]
+        twitter_handle = get_twitter_handle()
+        if twitter_handle != None:
+            twitter_handle = f' ({twitter_handle})'
+        else:
+            twitter_handle = ''
         
         if player['position'] in pitching_positions and p['group'] == 'pitching':
             while boring:
                 stat, value = choice(list(p['stats'].items()))
                 if value not in bad_values and stat not in pitching_stats:
                     boring = False
-                    return (f'{get_twitter_handle()} is a {position} for {team}. He has {value} {fix_formatting(stat)} this season. ⚾')
+                    return (f'{first} {last}{twitter_handle} is a {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} this season. ⚾\n{hashtag} \n#MLB')
                 elif value not in bad_values and stat in pitching_stats:
                     boring = False
-                    return (f'{get_twitter_handle()} is a {position} for {team}. He has {value} {fix_formatting(stat)} against this season. ⚾')
+                    return (f'{first} {last}{twitter_handle} is a {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} against this season. ⚾\n{hashtag} \n#MLB')
         
         elif p['group'] == 'hitting':
             while boring:
                 stat, value = choice(list(p['stats'].items()))
                 if value not in bad_values:
                     boring = False
-                    return (f'{get_twitter_handle()} is a {position} for {team}. He has {value} {fix_formatting(stat)} this season. ⚾')
+                    return (f'{first} {last}{twitter_handle} is a {position} for the {current_team} ({team}). He has {value} {fix_formatting(stat)} this season. ⚾\n{hashtag} \n#MLB')
+                 
+print(get_rand_stat(get_rand_player()))

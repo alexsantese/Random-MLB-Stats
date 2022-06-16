@@ -1,9 +1,12 @@
 
-teams = {'Arizona Diamondbacks': '@Dbacks', 'Atlanta Braves': '@Braves', 'Baltimore Orioles': '@Orioles', 'Boston Red Sox': '@RedSox', 'Chicago Cubs': '@Cubs', 'Chicago White Sox': '@whitesox', 
-         'Cincinnati Reds': '@Reds', 'Cleveland Guardians': '@CleGuardians', 'Colorado Rockies': '@Rockies', 'Detroit Tigers': '@tigers', 'Houston Astros': '@astros', 'Los Angeles Angels': '@Angels', 
-         'Los Angeles Dodgers': '@Dodgers', 'Miami Marlins': '@Marlins', 'Milwaukee Brewers': '@Brewers', 'Minnesota Twins': '@Twins', 'New York Mets': '@Mets', 'New York Yankees': '@Yankees', 
-         'Oakland Athletics': '@Athletics', 'Philadelphia Phillies': '@Phillies', 'Pittsburgh Pirates': '@Pirates', 'San Diego Padres': '@Padres', 'Seattle Mariners': '@Mariners', 'San Francisco Giants': '@SFGiants', 
-         'St. Louis Cardinals': '@Cardinals', 'Tampa Bay Rays': '@RaysBaseball', 'Texas Rangers': '@Rangers', 'Toronto Blue Jays': '@BlueJays', 'Washington Nationals': '@Nationals'}
+teams = {'Arizona Diamondbacks': ['@Dbacks', '#RattleOn'], 'Atlanta Braves': ['@Braves', '#FortheA'], 'Baltimore Orioles': ['@Orioles', '#Birdland'], 'Boston Red Sox': ['@RedSox', '#DirtyWater'], 
+         'Chicago Cubs': ['@Cubs', '#ItsDifferentHere'], 'Chicago White Sox': ['@whitesox', '#ChangeTheGame'], 'Cincinnati Reds': ['@Reds', '#ATOBTTR'], 'Cleveland Guardians': ['@CleGuardians', '#ForTheLand'],
+         'Colorado Rockies': ['@Rockies', '#Rockies'], 'Detroit Tigers': ['@tigers', '#DetroitRoots'], 'Houston Astros': ['@astros', '#LevelUP'], 'Los Angeles Angels': ['@Angels', '#GoHalos'], 
+         'Los Angeles Dodgers': ['@Dodgers', '#AlwaysLA'], 'Miami Marlins': ['@Marlins', '#MakeItMiami'], 'Milwaukee Brewers': ['@Brewers', '#ThisIsMyCrew'], 'Minnesota Twins': ['@Twins', '#MNTwins'], 
+         'New York Mets': ['@Mets', '#LGM'], 'New York Yankees': ['@Yankees', '#RepBX'], 'Oakland Athletics': ['@Athletics', '#DrumTogether'], 'Philadelphia Phillies': ['@Phillies', '#Ring the Bell'], 
+         'Pittsburgh Pirates': ['@Pirates', '#LetsGoBucs'], 'San Diego Padres': ['@Padres', '#TimeToShine'], 'Seattle Mariners': ['@Mariners', '#SeaUsRise'], 'San Francisco Giants': ['@SFGiants', '#SFGameUp'], 
+         'St. Louis Cardinals': ['@Cardinals', '#STLCards'], 'Tampa Bay Rays': ['@RaysBaseball', '#RaysUp'], 'Texas Rangers': ['@Rangers', '#StraightUpTX'], 
+         'Toronto Blue Jays': ['@BlueJays', '#NextLevel'], 'Washington Nationals': ['@Nationals', '#NATITUDE']}
 
 uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
