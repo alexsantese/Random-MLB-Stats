@@ -2,3 +2,4 @@ __pycache__/
 assets/
 twitter_credentials.py
 keep_alive.py
+requirements.txt
