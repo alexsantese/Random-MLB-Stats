@@ -1,4 +1,5 @@
-.__pycache__/
+__pycache__/
 .players.csv
 .twitter_credentials.py
-.assets/
+.twitter_credentials.py
+assets/
