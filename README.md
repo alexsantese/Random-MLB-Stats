@@ -14,4 +14,5 @@ Added a dictionary of the teams and Twitter handles/hashtags to be able to add t
 
 ### Example Tweet:
 ---
-![image](https://user-images.githubusercontent.com/81919149/174015545-69d90bc9-0dba-4ef8-8346-0dc4ce6389ee.png)
+![image](https://user-images.githubusercontent.com/81919149/174431312-269858db-d22a-4abf-aa86-7d98f7e0107f.png)
+
