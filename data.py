@@ -27,7 +27,7 @@ against_stats = {'avg': 'batting average', 'obp': 'OBP', 'slg': 'SLG', 'ops': 'O
 
 # mainly meant for pitchers formatted as --> recorded 25 outs
 # used for pitchers
-recorded_stats = {'outs': 'outs', 'strikeOuts': 'strike outs', 'wildPitches': 'wild pitches', 'shutouts': 'shut outs', 'completeGames': 'complete games', 'strikes': 'strikes', 'pickoffs': 'pickoffs'}
+recorded_stats = {'outs': 'outs', 'strikeOuts': 'strike outs', 'wildPitches': 'wild pitches', 'shutouts': 'shut outs', 'completeGames': 'complete games', 'strikes': 'strikes'}
 
 # stats about how many games played or started --> started 10 games
 # used for pitchers
@@ -37,11 +37,11 @@ games_stats = {'gamesPlayed': 'played', 'gamesStarted': 'started', 'gamesPitched
 # pitching stats where I want the name first --> hit a batter 8 times
 # used for pitchers
 stat_first_pitching = {'hitBatsmen': 'hit a batter', 'inheritedRunnersScored': 'let inherited runners score', 'battersFaced': 'faced a batter', 'groundIntoDoublePlay': 'forced a grounder into a double play',
-                       'catchersInterference': 'had a catcher interfere'}
+                       'catchersInterference': 'had a catcher interfere', 'pickoffs': 'picked a runner off'}
 
 # ratio stats --> a ratio of 1.19 ground outs to air outs
 # used for pitchers and hitters
-ratio_stats = {'groundOutsToAirOuts': 'ground outs to air outs', 'strikeoutWalkRatio': 'strike outs to walks', 'atBatsPerHomeRun': 'at bats per home run'}
+ratio_stats = {'groundOutsToAirOuts': 'ground outs to fly outs', 'strikeoutWalkRatio': 'strike outs to walks', 'atBatsPerHomeRun': 'at bats per home run'}
 
 # stats that give per 9 inning avg --> averaged 1.3 walks per 9 innings
 # used for pitchers and hitters
@@ -49,7 +49,7 @@ per9_stats = {'walksPer9Inn': 'walks', 'hitsPer9Inn': 'hits', 'runsScoredPer9': 
 
 # stats where I want the value first --> .397 batting average
 # used for hitters
-value_first_stats = {'avg': 'batting average', 'atBats': 'at bats', 'obp': 'OBP', 'slg': 'SLG', 'ops': 'OPS', 'groundOuts': 'ground outs', 'airOuts': 'air outs', 'runs': 'runs', 
+value_first_stats = {'avg': 'batting average', 'atBats': 'at bats', 'obp': 'OBP', 'slg': 'SLG', 'ops': 'OPS', 'groundOuts': 'ground outs', 'airOuts': 'fly outs', 'runs': 'runs', 
                      'doubles': 'doubles', 'triples': 'triples', 'baseOnBalls': 'walks', 'hits': 'hits', 'stolenBases': 'stolen bases', 'sacBunts': 'sac bunts', 'sacFlies': 'sac flies',
                      'plateAppearances': 'plate appearances', 'totalBases': 'total bases', 'rbi': 'RBIs', 'babip': 'BABIP', 'stolenBasePercentage': 'SB%'}
 

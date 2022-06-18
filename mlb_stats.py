@@ -62,7 +62,7 @@ def get_rand_stat(player):
         twitter_handle = ''
 
     # gives us the basic player info we'll use for every version of our tweets
-    player_info = f'{first} {last}{twitter_handle} is {position} for the {current_team} ({team}).'
+    player_info = f'{first} {last}{twitter_handle} is {position} for the {current_team} ({team})\n'
     hashtags = f'\n{hashtag} \n#MLB'
     
     boring = True
@@ -82,35 +82,35 @@ def get_rand_stat(player):
                 if value not in boring_values:
                     if stat in pitcher_stats:
                         boring = False
-                        return f'{player_info} He has {value} {pitcher_stats.get(stat)} this season. ⚾{hashtags}'
+                        return f'{player_info} He has {value} {pitcher_stats.get(stat)} this season ⚾{hashtags}'
                     
                     elif stat in givenup_stats:
                         boring = False
-                        return f'{player_info} He has given up {value} {givenup_stats.get(stat)} this season. ⚾{hashtags}'
+                        return f'{player_info} He has given up {value} {givenup_stats.get(stat)} this season ⚾{hashtags}'
                     
                     elif stat in against_stats:
                         boring = False
-                        return f'{player_info} He has {value} {against_stats.get(stat)} against him this season. ⚾{hashtags}'
+                        return f'{player_info} He has {value} {against_stats.get(stat)} against him this season ⚾{hashtags}'
                     
                     elif stat in recorded_stats:
                         boring = False
-                        return f'{player_info} He has recorded {value} {recorded_stats.get(stat)} this season. ⚾{hashtags}'
-                    
+                        return f'{player_info} He has recorded {value} {recorded_stats.get(stat)} this season ⚾{hashtags}'
+                
                     elif stat in games_stats:
                         boring = False
-                        return f'{player_info} He has {games_stats.get(stat)} {value} games this season. ⚾{hashtags}'
+                        return f'{player_info} He has {games_stats.get(stat)} {value} games this season ⚾{hashtags}'
                     
                     elif stat in stat_first_pitching:
                         boring = False
-                        return f'{player_info} He has {stat_first_pitching.get(stat)} {value} times this season. ⚾{hashtags}'
+                        return f'{player_info} He has {stat_first_pitching.get(stat)} {value} times this season ⚾{hashtags}'
                     
                     elif stat in ratio_stats:
                         boring = False
-                        return f'{player_info} He has a ratio of {value} {ratio_stats.get(stat)} this season. ⚾{hashtags}'
+                        return f'{player_info} He has a ratio of {value} {ratio_stats.get(stat)} this season ⚾{hashtags}'
                     
                     elif stat in per9_stats:
                         boring = False
-                        return f'{player_info} He has averaged {value} {per9_stats.get(stat)} per 9 innings this season. ⚾{hashtags}'
+                        return f'{player_info} He has averaged {value} {per9_stats.get(stat)} per 9 innings this season ⚾{hashtags}'
         
         # if the player is not a pitcher then we only care about their hitting stats, so we'll grab a hitting stat dictionary
         elif p['group'] == 'hitting':
@@ -119,16 +119,16 @@ def get_rand_stat(player):
                 if value not in boring_values:
                     if stat in ratio_stats:
                         boring = False
-                        return f'{player_info} He has a ratio of {value} {ratio_stats.get(stat)} per 9 innings this season. ⚾{hashtags}'
+                        return f'{player_info} He has a ratio of {value} {ratio_stats.get(stat)} per 9 innings this season ⚾{hashtags}'
 
                     elif stat in per9_stats:
                         boring = False
-                        return f'{player_info} He has averaged {value} {per9_stats.get(stat)} per 9 innings this season. ⚾{hashtags}'
+                        return f'{player_info} He has averaged {value} {per9_stats.get(stat)} per 9 innings this season ⚾{hashtags}'
                     
                     elif stat in value_first_stats:
                         boring = False
-                        return f'{player_info} He has {value} {value_first_stats.get(stat)} this season. ⚾{hashtags}'
+                        return f'{player_info} He has {value} {value_first_stats.get(stat)} this season ⚾{hashtags}'
                     
                     elif stat in stat_first_stats:
                         boring = False
-                        return f'{player_info} He has {stat_first_stats.get(stat)} {value} times this season. ⚾{hashtags}' 
+                        return f'{player_info} He has {stat_first_stats.get(stat)} {value} times this season ⚾{hashtags}' 
