@@ -119,7 +119,7 @@ def get_rand_stat(player):
                 if value not in boring_values:
                     if stat in ratio_stats:
                         boring = False
-                        return f'{player_info} He has a ratio of {value} {per9_stats.get(stat)} per 9 innings this season. ⚾{hashtags}'
+                        return f'{player_info} He has a ratio of {value} {ratio_stats.get(stat)} per 9 innings this season. ⚾{hashtags}'
 
                     elif stat in per9_stats:
                         boring = False
