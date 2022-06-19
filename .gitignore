@@ -4,3 +4,4 @@ assets/
 twitter_credentials.py
 keep_alive.py
 requirements.txt
+lambda_function.py
