@@ -47,22 +47,22 @@ def get_rand_stat(player):
     
     # get the player's twitter handle (if it exists)
     # TODO: sometimes returns "parody" accounts instead of the real player's twitter handle, so let's fix this, lol
-    def get_twitter_handle():
-        search = f'{first} {last} {current_team}'
-        users = api.search_users(search)
-        if users != []:
-            for user in users:
-                return f'@{user.screen_name}'
+    # def get_twitter_handle():
+    #     search = f'{first} {last} {current_team}'
+    #     users = api.search_users(search)
+    #     if users != []:
+    #         for user in users:
+    #             return f'@{user.screen_name}'
     
     # check to see if the returned twitter handle exists or not, returns a blank space if no handle was found
-    twitter_handle = get_twitter_handle()
-    if twitter_handle != None:
-        twitter_handle = f' ({twitter_handle})'
-    else:
-        twitter_handle = ''
+    # twitter_handle = get_twitter_handle()
+    # if twitter_handle != None:
+    #     twitter_handle = f' ({twitter_handle})'
+    # else:
+    #     twitter_handle = ''
 
     # gives us the basic player info we'll use for every version of our tweets
-    player_info = f'{first} {last}{twitter_handle} is {position} for the {current_team} ({team})\n'
+    player_info = f'{first} {last} is {position} for the {current_team}\n'
     hashtags = f'\n{hashtag} \n#MLB'
     
     boring = True
