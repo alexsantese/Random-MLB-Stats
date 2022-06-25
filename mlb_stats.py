@@ -24,8 +24,6 @@ def get_rand_player():
     # returns a player object from statsapi that we can pull information from
     return player
 
-player = get_rand_player()
-
 def get_player_info(player):
     # pull a bunch of info from the player object
     first_name = player['first_name']
@@ -42,8 +40,6 @@ def get_player_info(player):
     hashtags = f'\n{team_hashtag} \n#MLB'
     
     return player_info, hashtags, stadium
-
-player_info, hashtags, stadium = get_player_info(player)
             
 # gets a random stat for the player returned by the get_rand_player function        
 def get_rand_stat(player):
@@ -118,7 +114,8 @@ def get_rand_stat(player):
                     
     return tweet_meat
 
-tweet_meat = get_rand_stat(player)
 
 def make_tweet():
+    player = get_rand_player()
+    player_info, hashtags, stadium = get_player_info(player)
     return f'{player_info}He has {get_rand_stat(player)}, has {get_rand_stat(player)}, and has {get_rand_stat(player)} this season ⚾{hashtags}'
