@@ -1,13 +1,16 @@
-from mlb_stats import get_rand_player, get_rand_stat, api
+from mlb_stats import make_tweet, stadium
 from data import teams
-import time       
+import time
+from twitter_credentials import *
+
+authenticator = tweepy.OAuthHandler(twitter_api_key, twitter_api_key_secret)
+authenticator.set_access_token(access_token, access_token_secret)
+
+api = tweepy.API(authenticator, wait_on_rate_limit=True)       
 
 # the main function that pulls a tweet to post
 def post_tweet():
-    player = get_rand_player()
-    stadium = teams.get(player['current_team'])[2]
-    
-    tweet = get_rand_stat(player)      
+    tweet = make_tweet()
     api.update_status_with_media(tweet, stadium)
          
 # wait an hour in between posts

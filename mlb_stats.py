@@ -5,12 +5,6 @@ import tweepy
 import time
 from data import *
 from random import randint, choice
-from twitter_credentials import *
-
-authenticator = tweepy.OAuthHandler(twitter_api_key, twitter_api_key_secret)
-authenticator.set_access_token(access_token, access_token_secret)
-
-api = tweepy.API(authenticator, wait_on_rate_limit=True)
 
 # create a list of players to randomly pull from
 players = []
@@ -31,104 +25,102 @@ def get_rand_player():
             viable = True
     # returns a player object from statsapi that we can pull information from
     return player
-            
-# gets a random stat for the player returned by the get_rand_player function        
-def get_rand_stat(player):
-    
+
+player = get_rand_player()
+
+def get_player_info(player):
     # pull a bunch of info from the player object
-    first = player['first_name']
-    last = player['last_name']
+    first_name = player['first_name']
+    last_name = player['last_name']
     position = positions.get(player['position'])
     
     # checks with the lists in the data.py file to get twitter handles and hashtags for the player's current team
     current_team = player['current_team']
-    team = teams.get(player['current_team'])[0]
-    hashtag = teams.get(player['current_team'])[1]
-    
-    # get the player's twitter handle (if it exists)
-    # TODO: sometimes returns "parody" accounts instead of the real player's twitter handle, so let's fix this, lol
-    # def get_twitter_handle():
-    #     search = f'{first} {last} {current_team}'
-    #     users = api.search_users(search)
-    #     if users != []:
-    #         for user in users:
-    #             return f'@{user.screen_name}'
-    
-    # check to see if the returned twitter handle exists or not, returns a blank space if no handle was found
-    # twitter_handle = get_twitter_handle()
-    # if twitter_handle != None:
-    #     twitter_handle = f' ({twitter_handle})'
-    # else:
-    #     twitter_handle = ''
+    team_hashtag = teams.get(player['current_team'])[1]
+    stadium = teams.get(player['current_team'])[2]
 
     # gives us the basic player info we'll use for every version of our tweets
-    player_info = f'{first} {last} is {position} for the {current_team}\n'
-    hashtags = f'\n{hashtag} \n#MLB'
+    player_info = f'{first_name} {last_name} is {position} for the {current_team}\n'
+    hashtags = f'\n{team_hashtag} \n#MLB'
+    
+    return player_info, hashtags, stadium
+
+player_info, hashtags, stadium = get_player_info(player)
+            
+# gets a random stat for the player returned by the get_rand_player function        
+def get_rand_stat(player):
     
     boring = True
     
     for i in range(len(player['stats'])):
         
         # most players have multiple stat dictionaries, so this will grab one randomly
-        p = player['stats'][i]
+        random_stat = player['stats'][i]
         
         # if the random player is a pitcher we only want to grab their pitching stats (also same for two-way players)
-        if player['position'] in pitching_positions and p['group'] == 'pitching':
+        if player['position'] in pitching_positions and random_stat['group'] == 'pitching':
             
             # checks to see if the randomly chosen stat is 0, 1, or an empty value and picks a different one if it is
             # 0 and 1 are boring stats anyway, who cares about a single stolen base?
             while boring:
-                stat, value = choice(list(p['stats'].items()))
+                stat, value = choice(list(random_stat['stats'].items()))
                 if value not in boring_values:
                     if stat in pitcher_stats:
                         boring = False
-                        return f'{player_info} He has {value} {pitcher_stats.get(stat)} this season ⚾{hashtags}'
+                        tweet_meat = f'{value} {pitcher_stats.get(stat)}'
                     
                     elif stat in givenup_stats:
                         boring = False
-                        return f'{player_info} He has given up {value} {givenup_stats.get(stat)} this season ⚾{hashtags}'
+                        tweet_meat = f'given up {value} {givenup_stats.get(stat)}'
                     
                     elif stat in against_stats:
                         boring = False
-                        return f'{player_info} He has {value} {against_stats.get(stat)} against him this season ⚾{hashtags}'
+                        tweet_meat =  f'{value} {against_stats.get(stat)} against him'
                     
                     elif stat in recorded_stats:
                         boring = False
-                        return f'{player_info} He has recorded {value} {recorded_stats.get(stat)} this season ⚾{hashtags}'
+                        tweet_meat =  f'recorded {value} {recorded_stats.get(stat)}'
                 
                     elif stat in games_stats:
                         boring = False
-                        return f'{player_info} He has {games_stats.get(stat)} {value} games this season ⚾{hashtags}'
+                        tweet_meat = f'{games_stats.get(stat)} {value} games'
                     
                     elif stat in stat_first_pitching:
                         boring = False
-                        return f'{player_info} He has {stat_first_pitching.get(stat)} {value} times this season ⚾{hashtags}'
+                        tweet_meat = f'{stat_first_pitching.get(stat)} {value} times'
                     
                     elif stat in ratio_stats:
                         boring = False
-                        return f'{player_info} He has a ratio of {value} {ratio_stats.get(stat)} this season ⚾{hashtags}'
+                        tweet_meat = f'a ratio of {value} {ratio_stats.get(stat)}'
                     
                     elif stat in per9_stats:
                         boring = False
-                        return f'{player_info} He has averaged {value} {per9_stats.get(stat)} per 9 innings this season ⚾{hashtags}'
+                        tweet_meat = f'averaged {value} {per9_stats.get(stat)} per 9 innings'
         
         # if the player is not a pitcher then we only care about their hitting stats, so we'll grab a hitting stat dictionary
-        elif p['group'] == 'hitting':
+        elif random_stat['group'] == 'hitting':
             while boring:
-                stat, value = choice(list(p['stats'].items()))
+                stat, value = choice(list(random_stat['stats'].items()))
                 if value not in boring_values:
                     if stat in ratio_stats:
                         boring = False
-                        return f'{player_info} He has a ratio of {value} {ratio_stats.get(stat)} ⚾{hashtags}'
+                        tweet_meat = f'a ratio of {value} {ratio_stats.get(stat)}'
 
                     elif stat in per9_stats:
                         boring = False
-                        return f'{player_info} He has averaged {value} {per9_stats.get(stat)} per 9 innings this season ⚾{hashtags}'
+                        tweet_meat = f'averaged {value} {per9_stats.get(stat)} per 9 innings'
                     
                     elif stat in value_first_stats:
                         boring = False
-                        return f'{player_info} He has {value} {value_first_stats.get(stat)} this season ⚾{hashtags}'
+                        tweet_meat = f'{value} {value_first_stats.get(stat)}'
                     
                     elif stat in stat_first_stats:
                         boring = False
-                        return f'{player_info} He has {stat_first_stats.get(stat)} {value} times this season ⚾{hashtags}' 
+                        tweet_meat = f'{stat_first_stats.get(stat)} {value} times' 
+                    
+    return tweet_meat
+
+tweet_meat = get_rand_stat(player)
+
+def make_tweet():
+    return f'{player_info}He has {get_rand_stat(player)}, has {get_rand_stat(player)}, and has {get_rand_stat(player)} this season ⚾{hashtags}'
