@@ -9,7 +9,8 @@ api = tweepy.API(authenticator, wait_on_rate_limit=True)
 
 # the main function that pulls a tweet to post
 def post_tweet():
-    api.update_status_with_media(make_tweet(), stadium)
+    tweet, stadium = make_tweet()
+    api.update_status_with_media(tweet, stadium)
          
 # wait an hour in between posts
 while True:
