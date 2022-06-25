@@ -1,8 +1,6 @@
 # This uses the MLB-StatsAPI Python wrapper by github.com/toddrob99
 import statsapi
 import csv
-import tweepy
-import time
 from data import *
 from random import randint, choice
 
