@@ -1,5 +1,4 @@
 from mlb_stats import make_tweet, stadium
-from data import teams
 import time
 from twitter_credentials import *
 
@@ -10,8 +9,7 @@ api = tweepy.API(authenticator, wait_on_rate_limit=True)
 
 # the main function that pulls a tweet to post
 def post_tweet():
-    tweet = make_tweet()
-    api.update_status_with_media(tweet, stadium)
+    api.update_status_with_media(make_tweet(), stadium)
          
 # wait an hour in between posts
 while True:
