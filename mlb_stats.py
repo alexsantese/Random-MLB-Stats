@@ -127,4 +127,4 @@ def make_tweet():
         if stat not in stats:
             stats.append(stat)
             
-    return f'{player_info}He has {stats[0]}, has {stats[1]}, and has {stats[2]} this season ⚾{hashtags}'
+    return f'{player_info}He has {stats[0]}, has {stats[1]}, and has {stats[2]} this season ⚾{hashtags}', stadium
