@@ -116,6 +116,15 @@ def get_rand_stat(player):
 
 
 def make_tweet():
+    
     player = get_rand_player()
     player_info, hashtags, stadium = get_player_info(player)
-    return f'{player_info}He has {get_rand_stat(player)}, has {get_rand_stat(player)}, and has {get_rand_stat(player)} this season ⚾{hashtags}'
+    
+    stats = []
+    
+    while len(stats) < 3:
+        stat = get_rand_stat(player)
+        if stat not in stats:
+            stats.append(stat)
+            
+    return f'{player_info}He has {stats[0]}, has {stats[1]}, and has {stats[2]} this season ⚾{hashtags}'
